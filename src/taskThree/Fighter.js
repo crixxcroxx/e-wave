@@ -4,6 +4,15 @@ export default function Fighter(strength, agility, vitality) {
   const VIT = vitality > 30 ? 30 : vitality
   const HP = ((VIT * 10) + (STR * 5) + (AGI * 3)) + 50
 
+  let name = ""
+
+  Object.defineProperty(this, "name", {
+    set: function(value) {
+      // name can only be defined once
+      if(!name) name = value
+    }
+  })
+
   Object.defineProperty(this, "damage", {
     get: function() {
       return (STR * 5) + (AGI * 3)
@@ -16,7 +25,7 @@ export default function Fighter(strength, agility, vitality) {
     }
   })
 
-  this.getName = () => this.name
+  this.getName = () => name
 
   this.getHP = () => HP
 
