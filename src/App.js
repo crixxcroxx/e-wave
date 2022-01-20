@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import { useState } from "react";
 
 import Btn from "./taskFive/components/Btn";
 import Chips from "./taskFive/components/Chips";
@@ -10,7 +10,7 @@ import products from "./taskFive/data/products.json";
 import "./app.css";
 
 export default function App() {
-//   const [data, setData] = useState(products);
+  const [data, setData] = useState(products);
 
   const showSidePanel = () => {
     const element = document.querySelector(".side-panel")
@@ -19,16 +19,16 @@ export default function App() {
 
   return (
     <div className="app">
-      <SidePanel />
+      <SidePanel data={data} setData={setData} />
 
       <main>
         <div onClick={showSidePanel}>
           <Btn>Options</Btn>
         </div>
 
-        <Chips data={products} />
+        <Chips data={data} />
 
-        <Products data={products} />
+        <Products data={data} />
       </main>
     </div>
   );

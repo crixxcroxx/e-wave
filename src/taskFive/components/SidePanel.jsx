@@ -1,7 +1,3 @@
-//
-// checkbox filtering is not working yet
-//
-
 import { useState } from "react";
 
 import Btn from "./Btn";
@@ -11,8 +7,9 @@ import getUniqueFromArray from "../utils/getUniqueFromArray.js";
 
 import "../styles/sidePanel.css";
 
-export default function SidePanel() {
-  const [values, setValues] = useState({});
+export default function SidePanel({ data, setData }) {
+  const filteredData = [...products]
+  const [values, setValues] = useState([]);
   const manufacturers = getUniqueFromArray(products, "manufacturer")
   const categories = getUniqueFromArray(products, "category")
 
@@ -22,6 +19,18 @@ export default function SidePanel() {
   }
 
   const handleFilter = () => {
+    let filtered = filteredData.filter(product =>
+      values.some(fil => [product.category].flat().includes(fil)) ||
+      values.some(fil => [product.manufacturer].flat().includes(fil)) ||
+      values.some(fil => [product.price] > fil)
+    )
+
+    if(values.length === 0) {
+      setData(products)
+    } else {
+      setData(filtered)
+    }
+
     closeSidePanel()
   }
 
@@ -32,18 +41,21 @@ export default function SidePanel() {
       checkedCheckboxes[i].checked = false
     }
 
-    setValues({})
+    setValues([])
+    setData(products)
     closeSidePanel()
   }
 
   const handleCheckbox = (e, type) => {
+    if(!e.target.checked) {
+      values.splice(values.findIndex(i => i === e.target.id), 1)
+    }
+
     if(e.target.checked) {
-      setValues({
+      setValues([
         ...values,
-        [type]: {
-          [e.target.id]: true
-        }
-      })
+        e.target.id
+      ])
     }
   }
 
@@ -75,20 +87,16 @@ export default function SidePanel() {
           <p>Price</p>
 
           <div>
-            <input type="checkbox" id="twenty" />
-            <label htmlFor="twenty">Above Php 20</label>
+            <input type="checkbox" id="20" onChange={(e) => handleCheckbox(e, "price")} />
+            <label htmlFor="20">Above Php 20</label>
           </div>
           <div>
-            <input type="checkbox" id="fifteen" />
-            <label htmlFor="fifteen">Above Php 15</label>
+            <input type="checkbox" id="15" onChange={(e) => handleCheckbox(e, "price")} />
+            <label htmlFor="15">Above Php 15</label>
           </div>
           <div>
-            <input type="checkbox" id="ten" />
-            <label htmlFor="ten">Above Php 10</label>
-          </div>
-          <div>
-            <input type="checkbox" id="tenBelow" />
-            <label htmlFor="tenBelow">Below Php 10</label>
+            <input type="checkbox" id="10" onChange={(e) => handleCheckbox(e, "price")} />
+            <label htmlFor="10">Above Php 10</label>
           </div>
         </div>
 

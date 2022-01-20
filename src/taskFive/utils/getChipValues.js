@@ -14,7 +14,7 @@ export default function getChipValues(data) {
   })
 
   values[chipProperties[0]] = totalQty
-  values[chipProperties[1]] = totalPrice
+  values[chipProperties[1]] = totalPrice.toFixed(2)
   values[chipProperties[2]] = (totalPrice / data.length).toFixed(2)
   values[chipProperties[3]] = Math.max(...priceList)
   values[chipProperties[4]] = Math.min(...priceList)
