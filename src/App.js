@@ -9,9 +9,11 @@ export default function App() {
 
   return (
     <div className="App">
-      <i>Selected Color: {selectedColor}</i> <br />
-      <i>Default Color: {defaultColor}</i> <br />
-      <span>Current Color: {color}</span>
+      <p>
+        Selected Color: <i>{selectedColor}</i>
+      </p>
+      <p>Default Color: <i>{defaultColor}</i></p>
+      <p>Current Color: <i>{color}</i></p>
 
       <div>
         <button onClick={() => setColor(one.get(selectedColor))}>Get</button>
