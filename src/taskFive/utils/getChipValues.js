@@ -1,5 +1,4 @@
 import chipProperties from "../data/chipProperties";
-import products from "../data/products.json";
 
 export default function getChipValues(data) {
   let totalQty = 0
