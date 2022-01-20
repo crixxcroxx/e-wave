@@ -1,0 +1,23 @@
+.products table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.products td,
+.products th {
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.products th {
+  cursor: pointer;
+}
+
+.products tr:hover :not(th) {
+  background-color: #dddddd;
+}
+
+.products thead th {
+  border-bottom: 3px solid #dddddd;
+}

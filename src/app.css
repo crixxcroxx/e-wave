@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+.app {
+  font-family: arial, sans-serif;
+  font-size: 16px;
+}
+
+.app main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  max-width: 900px;
+  margin-inline: auto;
+  padding: 1rem;
+}
+
+.app main > div:first-child {
+  width: fit-content;
+}
